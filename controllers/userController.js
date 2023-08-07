@@ -56,10 +56,12 @@ const loginUser = asyncHandler(async (req, res) => {
         expiresIn: "1000m",
       }
     );
-    res.status(200).json({ accessToken });
+    res
+      .status(200)
+      .json({ user: user.username, email: user.email, accessToken });
   } else {
     res.status(401);
-    throw new Error("Incorrect password");
+    throw new Error("Incorrect email or password");
   }
 });
 
